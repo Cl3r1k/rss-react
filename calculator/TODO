@@ -17,15 +17,15 @@ Todo:
         ☐ Input for Trade-In (value can’t be greater than `¼` of MSRP, **default**: 0)
         ☐ Input for APR (in %, **default**: 0)
         ☐ Input for Post Code (**default**: your current post code)
-        ☐ **Buttons** row for Terms (available values: [12, 24, 36, 48, 72, 84], **default**: 24)
+        ☐ **Buttons** row for Terms (available values: [12, 24, 36, 48, 72, 84], **default**: 24)  <========================================================= CURRENT TASK
         ☐ **Buttons** row for Credit Score (values from 600 to 900 with step 50, **default**: 750)
       ☐ Tab 2 (Lease)
         ☐ Input for Down Payment (value can’t be greater than `¼` of MSRP, **default**: 0)
         ☐ Input for Trade-In (value can’t be greater than `¼` of MSRP, **default**: 0)
         ☐ Input for Post Code (**default**: your current post code)
-        ☐ **Select** input for Terms (available values: [24, 36, 48], **default**: 36)
-        ☐ **Select** input for Mileages (available values: [10000, 12000, 15000], **default**: 12000)
-        ☐ **Select** input for Credit Score (values from 600 to 900 with step 50, **default**: 750)
+        ✔ **Select** input for Terms (available values: [24, 36, 48], **default**: 36) @done(20-02-11 15:38)
+        ✔ **Select** input for Mileages (available values: [10000, 12000, 15000], **default**: 12000) @done(20-02-11 15:38)
+        ✔ **Select** input for Credit Score (values from 600 to 900 with step 50, **default**: 750) @done(20-02-11 15:38)
       ☐ Info card
         ☐ MSRP
         ☐ Vehicle name
@@ -113,13 +113,16 @@ Todo:
 
   Useful links:
     1) location API (https://ipinfo.io/)
-     - Sign up
-     - Get token
-     - Get location data (you need only postal) https://ipinfo.io/json?token=eb5b90bb77d46a
+      - Sign up
+      - Get token
+      - Get location data (you need only postal) https://ipinfo.io/json?token=eb5b90bb77d46a
      
     2) React Best Practices
-     - https://www.codeinwp.com/blog/react-best-practices/
-     - http://www.jancarloviray.com/blog/react-best-practices-2020/
+      - https://www.codeinwp.com/blog/react-best-practices/
+      - http://www.jancarloviray.com/blog/react-best-practices-2020/
+
+    3) PropTypes
+      - https://ru.reactjs.org/docs/typechecking-with-proptypes.html#___gatsby
      
      
   Help:

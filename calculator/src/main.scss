@@ -1,3 +1,10 @@
-.text-red {
-  color: red;
+$selectedButtonBGColor: #9adddd;
+$selectedTabBGColor: #deb887;
+
+.selected-button {
+  background-color: $selectedButtonBGColor;
+}
+
+.selected-tab {
+  background-color: $selectedTabBGColor;
 }
