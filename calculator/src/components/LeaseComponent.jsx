@@ -4,20 +4,12 @@ import PropTypes from 'prop-types';
 // Components
 import SelectCardComponent from './SelectCardComponent';
 
-// TODO: Consider to change `Component` to `PureComponent`
-export default class LeaseComponent extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
+export default class LeaseComponent extends React.PureComponent {
   render() {
     const { terms, mileages, creditScore, onChange } = this.props;
-    // console.log(`LeaseComponent render()::: terms: ${terms}, mileages: ${mileages}`);
 
     return (
-      <div>
+      <div className="lease-container">
         <SelectCardComponent
           rangeLabel="Terms:"
           rangeName="terms"

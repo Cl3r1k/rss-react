@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 import { hot } from 'react-hot-loader/root';
 import React from 'react';
 
@@ -13,6 +12,8 @@ import LeaseComponent from './components/LeaseComponent';
 import PaymentComponent from './components/PaymentComponent';
 import LoanComponent from './components/LoanComponent';
 import InfoTabComponent from './components/InfoTabComponent';
+
+const APP_SAVE_NAME = 'ReactCalculator';
 
 class App extends React.Component {
   constructor(props) {
@@ -40,58 +41,44 @@ class App extends React.Component {
   }
 
   async componentDidMount() {
+    const savedState = this.loadAppSettings();
+
+    if (savedState) {
+      const parsedState = JSON.parse(savedState);
+      this.setState({ ...parsedState });
+    } else {
+      await this.loadDefaults();
+    }
+  }
+
+  changeValueHandler = (evt, idName) => {
+    const { value } = evt.target;
+    this.setState({ [idName]: +value }, this.calculatePayment);
+  };
+
+  loadAppSettings = () => {
+    return localStorage.getItem(APP_SAVE_NAME);
+  };
+
+  saveAppSettings = () => {
+    localStorage.setItem(APP_SAVE_NAME, JSON.stringify(this.state));
+  };
+
+  switchTabHandler = idName => {
+    this.setState({ isLoanTab: idName === 'Loan' }, this.calculatePayment);
+  };
+
+  async loadDefaults() {
     const VALUE_LIMIT_RATE = 0.25;
     const responseDataValues = await Promise.resolve(mockData);
     const valueLimit = responseDataValues.msrp * VALUE_LIMIT_RATE;
-    // console.log('%c componentDidMount() resolved responseDataValues', 'color: green;', responseDataValues);
 
     const responseDataZip = await geoData.getGeoDataAsync();
-    // console.log('%c componentDidMount() resolved responseDataZip', 'color: green;', responseDataZip);
 
     this.setState({ ...responseDataValues, ...responseDataZip, valueLimit });
   }
 
-  // async getInitialData() {
-  //   // const data = await Promise.resolve('areasdf');
-  //   // console.log('resolved data', data);
-  // }
-
-  changeInputHandler = (evt, idName) => {
-    const { value } = evt.target;
-    // console.log('changeInputHandler() evt: ', evt);
-    // console.log(`changeInputHandler() idName: ${idName}`);
-    // console.log(`changeInputHandler() value: ${value}`);
-    this.setState({ [idName]: +value }, this.calculatePayment);
-  };
-
-  changeRangeHandler = (evt, idName) => {
-    const { value } = evt.target;
-    // console.log('changeRangeHandler() evt: ', evt);
-    // console.log(`changeRangeHandler() idName: ${idName}`);
-    // console.log(`changeRangeHandler() value: ${value}`);
-    this.setState({ [idName]: +value }, this.calculatePayment);
-  };
-
-  clickButtonHandler = (evt, idName) => {
-    const { value } = evt.target;
-    // console.log('changeRangeHandler() evt: ', evt);
-    // console.log(`changeRangeHandler() idName: ${idName}`);
-    // console.log(`changeRangeHandler() value: ${value}`);
-    this.setState({ [idName]: +value }, this.calculatePayment);
-    // this.calculatePayment();
-  };
-
-  switchTabHandler = idName => {
-    // const { value } = evt.target;
-    // console.log('changeRangeHandler() evt: ', evt);
-    // console.log(`changeRangeHandler() idName: ${idName}`);
-    // console.log(`changeRangeHandler() value: ${value}`);
-    this.setState({ isLoanTab: idName === 'Loan' }, this.calculatePayment);
-    // this.calculatePayment();
-  };
-
   async calculatePayment() {
-    // console.log('state: ', this.state);
     const monthlyPayment = await new Promise(resolve => {
       const {
         isLoanTab,
@@ -105,10 +92,8 @@ class App extends React.Component {
         loanApr,
         loanTerm,
       } = this.state;
-      // const { isLoanTab, creditScore, loanCreditScore } = this.state;
+
       const creditScoreBase = isLoanTab ? loanCreditScore : creditScore;
-      // console.log('creditScoreBase: ', creditScoreBase);
-      // console.log('msrp: ', msrp);
       let creditScoreValue = 0.95;
 
       if (creditScoreBase < 640) {
@@ -122,44 +107,28 @@ class App extends React.Component {
       if (creditScoreBase >= 700 && creditScoreBase < 750) {
         creditScoreValue = 1;
       }
-      // console.log('creditScoreValue: ', creditScoreValue);
 
       if (isLoanTab) {
         const paymentLoanResult = ((msrp - tradeIn - downPayment) / loanTerm) * (creditScoreValue * (loanApr / 100));
         resolve(Math.floor(paymentLoanResult));
-        // console.log('paymentLoanResult: ', paymentLoanResult);
       } else {
         const paymentLeaseResult = (((msrp - tradeIn - downPayment) * mileages) / 10000 / terms) * creditScoreValue;
-        // console.log('paymentLeaseResult: ', paymentLeaseResult);
         resolve(Math.floor(paymentLeaseResult));
       }
+
+      this.saveAppSettings();
     });
 
-    // console.log('monthlyPayment: ', monthlyPayment);
     this.setState({ monthlyPayment });
   }
 
-  initApp() {
-    // await this.getInitialData();
-    // console.log('initApp() called');
-  }
-
-  // changeTradeInHandler = evt => {
-  //   const { value } = evt.target;
-  //   console.log(`changeTradeInHandler() evt: ${evt}`);
-  //   console.log(`changeTradeInHandler() value: ${value}`);
-  //   this.setState({ tradeIn: +value });
-  // };
-
-  // changeDownPaymentHandler = evt => {
-  //   const { value } = evt.target;
-  //   console.log(`changeDownPaymentHandler() evt: ${evt}`);
-  //   console.log(`changeDownPaymentHandler() value: ${value}`);
-  //   this.setState({ downPayment: +value });
-  // };
+  // initApp() {
+  //   // await this.getInitialData();
+  //   // console.log('initApp() called');
+  // }
 
   render() {
-    this.initApp();
+    // this.initApp();
 
     const {
       isLoanTab,
@@ -181,39 +150,45 @@ class App extends React.Component {
       monthlyPayment,
     } = this.state;
 
-    // console.log(`render() msrp: ${msrp}, vehicleName: ${vehicleName}, dealerName: ${dealerName}, zipCode: ${zipCode}`);
-
     return (
-      <div>
-        <TabComponent tabName="Loan" isLoanTab={isLoanTab} onClick={this.switchTabHandler} />
-        <TabComponent tabName="Lease" isLoanTab={!isLoanTab} onClick={this.switchTabHandler} />
-        <CommonDataComponent
-          zipCode={zipCode}
-          tradeIn={tradeIn}
-          downPayment={downPayment}
-          valueLimit={valueLimit}
-          onChange={this.changeInputHandler}
-        />
-        <LoanComponent
-          loanApr={loanApr}
-          loanTerm={loanTerm}
-          loanCreditScore={loanCreditScore}
-          onClick={this.clickButtonHandler}
-        />
-        <LeaseComponent
-          terms={terms}
-          mileages={mileages}
-          creditScore={creditScore}
-          onChange={this.changeRangeHandler}
-        />
-        <PaymentComponent infoLabel="Monthly Payment:" infoValue={`$${monthlyPayment}`} />
-        <PaymentComponent
-          infoLabel="Taxes:"
-          infoValue={`${zipCode}`
-            .split('')
-            .map(num => num * 11)
-            .join('')}
-        />
+      <div className="wrapper">
+        <div className="calculator-container">
+          <div className="tab-container">
+            <TabComponent tabName="Loan" isLoanTab={isLoanTab} onClick={this.switchTabHandler} />
+            <TabComponent tabName="Lease" isLoanTab={!isLoanTab} onClick={this.switchTabHandler} />
+          </div>
+          <CommonDataComponent
+            zipCode={zipCode}
+            tradeIn={tradeIn}
+            downPayment={downPayment}
+            valueLimit={valueLimit}
+            onChange={this.changeValueHandler}
+          />
+          {isLoanTab ? (
+            <LoanComponent
+              loanApr={loanApr}
+              loanTerm={loanTerm}
+              loanCreditScore={loanCreditScore}
+              onClick={this.changeValueHandler}
+            />
+          ) : (
+            <LeaseComponent
+              terms={terms}
+              mileages={mileages}
+              creditScore={creditScore}
+              onChange={this.changeValueHandler}
+            />
+          )}
+
+          <PaymentComponent infoLabel="Monthly Payment:" infoValue={`$${monthlyPayment}`} />
+          <PaymentComponent
+            infoLabel="Taxes:"
+            infoValue={`${zipCode}`
+              .split('')
+              .map(num => num * 11)
+              .join('')}
+          />
+        </div>
         <InfoTabComponent
           msrp={msrp}
           vehicleName={vehicleName}
@@ -226,5 +201,4 @@ class App extends React.Component {
   }
 }
 
-// export default App;
 export default hot(App);

@@ -1,17 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class TabComponent extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
+export default class TabComponent extends React.PureComponent {
   render() {
     const { tabName, isLoanTab, onClick } = this.props;
     return (
-      <button className={isLoanTab ? 'selected-tab' : ''} type="button" onClick={() => onClick(tabName)}>
+      <button
+        className={`tab-button ${isLoanTab ? 'selected-tab' : ''}`}
+        type="button"
+        onClick={() => onClick(tabName)}
+      >
         {tabName}
       </button>
     );

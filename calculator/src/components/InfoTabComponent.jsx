@@ -12,18 +12,27 @@ export default class InfoTabComponent extends React.Component {
     const { msrp, vehicleName, dealerName, dealerPhone, dealerRating } = this.props;
 
     return (
-      <div>
-        <p>MSRP:</p>
-        <span>{`$${msrp}`}</span>
-        <p>Vehicle name:</p>
-        <span>{vehicleName}</span>
-        <p>Dealer name:</p>
-        <span>{dealerName}</span>
-        <p>Dealer phone number:</p>
-        <span>{dealerPhone}</span>
-        <p>Dealer rating:</p>
-        <span>{dealerRating}</span>
-        {/* <p>Taxes (array of numbers, generates during calculations):</p> */}
+      <div className="info-tab-container">
+        <div className="info-card">
+          <p className="info-card-text">MSRP:</p>
+          <span className="info-card-value extra-large-text">{`$${msrp}`}</span>
+        </div>
+        <div className="info-card">
+          <p className="info-card-text">Vehicle name:</p>
+          <span className="info-card-value">{vehicleName}</span>
+        </div>
+        <div className="info-card">
+          <p className="info-card-text">Dealer name:</p>
+          <span className="info-card-value">{dealerName}</span>
+        </div>
+        <div className="info-card">
+          <p className="info-card-text">Dealer phone number:</p>
+          <span className="info-card-value">{dealerPhone}</span>
+        </div>
+        <div className="info-card">
+          <p className="info-card-text">Dealer rating:</p>
+          <span className="info-card-value">{dealerRating}</span>
+        </div>
       </div>
     );
   }

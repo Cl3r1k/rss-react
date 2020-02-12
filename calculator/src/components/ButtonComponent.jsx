@@ -1,26 +1,17 @@
-/* eslint-disable class-methods-use-this */
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// TODO: Consider to change `Component` to `PureComponent`
-export default class ButtonComponent extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
+export default class ButtonComponent extends React.PureComponent {
   render() {
     const { isSelected, buttonName, value, onClick } = this.props;
 
     return (
       <button
-        className={isSelected ? 'selected-button' : ''}
+        className={`button-styled ${isSelected ? 'selected-button' : ''}`}
         type="button"
         name={buttonName}
         value={value}
         onClick={evt => onClick(evt, buttonName)}
-        // onKeyUp={evt => onClick(evt, buttonName)}
       >
         {value}
       </button>

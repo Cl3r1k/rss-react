@@ -1,10 +1,183 @@
 $selectedButtonBGColor: #9adddd;
-$selectedTabBGColor: #deb887;
+$selectedTabBGColor   : #e4d2bd;
+$mainBGColor          : #e0e0e0;
 
-.selected-button {
-  background-color: $selectedButtonBGColor;
+// --- Button Component ---
+.button-styled {
+  width    : 100%;
+  height   : 50px;
+  font-size: 20px;
+  border   : 1px solid #9d59b9;
+
+  &.selected-button {
+    color           : #ffffff;
+    background-color: $selectedButtonBGColor;
+  }
 }
 
-.selected-tab {
-  background-color: $selectedTabBGColor;
+// --- End Button Component ---
+
+// --- Tab Component ---
+.tab-button {
+  border       : none;
+  border-bottom: 1px solid gray;
+  height       : 50px;
+  font-size    : 24px;
+
+  &.selected-tab {
+    background-color: $selectedTabBGColor;
+  }
+}
+
+// --- End Tab Component ---
+
+// --- CommonData Component ---
+.common-data-container {
+  padding: 5px 15px;
+}
+
+// --- End CommonData Component ---
+
+// --- MaskedInputCard Component ---
+.masked-input-card-container {
+  display: flex;
+  padding: 5px 0;
+
+  font-size  : 20px;
+  line-height: 40px;
+
+  .card-label {
+    width: 100%;
+
+
+  }
+
+  .card-warning-info {
+    width       : 100%;
+    margin-right: 10px;
+    text-align  : end;
+    color       : #eb6b6b;
+  }
+
+  .card-input {
+    width    : 100px;
+    padding  : 10px;
+    font-size: 16px;
+  }
+}
+
+// --- End MaskedInputCard Component ---
+
+// --- LoanComponent Component ---
+.loan-container {
+  padding    : 5px 15px;
+  font-size  : 20px;
+  line-height: 40px;
+
+  .loan-text {
+    margin : 0px 0 0 0;
+    padding: 5px 0;
+  }
+
+  .buttons-row-container {
+    display: flex;
+  }
+}
+
+// --- End LoanComponent Component ---
+
+// --- LeaseComponent Component ---
+.lease-container {
+  padding: 5px 15px;
+  height : 252px;
+}
+
+// --- End LeaseComponent Component ---
+
+// --- End SelectCardComponent Component ---
+.select-card-container {
+  display: flex;
+  padding: 5px 0;
+
+  .card-label {
+    width      : 100%;
+    font-size  : 20px;
+    line-height: 40px;
+  }
+
+  .card-select {
+    width    : 145px;
+    padding  : 10px;
+    font-size: 16px;
+  }
+}
+
+// --- End LoanComponent Component ---
+
+// --- PaymentComponent Component ---
+.payment-container {
+  padding    : 0 15px;
+  font-size  : 20px;
+  line-height: 40px;
+
+  .payment-info {
+    font-weight: bolder;
+    margin     : 0;
+
+    .payment-value {
+      margin-left: 10px;
+      color      : #477e5e;
+    }
+  }
+}
+
+// --- End PaymentComponent Component ---
+
+// --- InfoTabComponent Component ---
+.info-tab-container {
+  margin-top      : 20px;
+  padding         : 15px;
+  border          : 3px solid darken($color: $selectedButtonBGColor, $amount: 30);
+  background-color: $mainBGColor;
+  font-size       : 16px;
+
+  .info-card {
+    padding: 5px 0;
+
+    .info-card-text {
+      margin     : 5px 0;
+      font-weight: bold;
+    }
+
+    .info-card-value {
+      font-size: 18px;
+
+      &.extra-large-text {
+        font-size: 40px;
+      }
+    }
+  }
+}
+
+// --- End InfoTabComponent Component ---
+
+.wrapper {
+  max-width  : 650px;
+  margin     : auto;
+  padding-top: 50px;
+
+  @media screen and (max-width: 350px) {
+    min-width: 350px;
+  }
+
+  .calculator-container {
+    border          : 3px solid darken($color: $selectedButtonBGColor, $amount: 30);
+    padding-bottom  : 5px;
+    background-color: $mainBGColor;
+
+    .tab-container {
+      display              : grid;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
 }

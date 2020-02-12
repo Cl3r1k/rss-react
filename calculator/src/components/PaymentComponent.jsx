@@ -2,21 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // TODO: Consider to change `Component` to `PureComponent`
-export default class PaymentComponent extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
+export default class PaymentComponent extends React.PureComponent {
   render() {
     const { infoLabel, infoValue } = this.props;
 
     return (
-      <div>
-        <p>
+      <div className="payment-container">
+        <p className="payment-info">
           {infoLabel}
-          <span>{infoValue}</span>
+          <span className="payment-value">{infoValue}</span>
         </p>
       </div>
     );

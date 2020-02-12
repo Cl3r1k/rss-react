@@ -4,19 +4,12 @@ import PropTypes from 'prop-types';
 // Components
 import MaskedInputCardComponent from './MaskedInputCardComponent';
 
-// TODO: Consider to change `Component` to `PureComponent`
-export default class CommonDataComponent extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
+export default class CommonDataComponent extends React.PureComponent {
   render() {
     const { zipCode, tradeIn, downPayment, valueLimit, onChange } = this.props;
 
     return (
-      <div>
+      <div className="common-data-container">
         <MaskedInputCardComponent inputLabel="Home ZIP Code:" value={zipCode} inputName="zipCode" onChange={onChange} />
         <MaskedInputCardComponent
           inputLabel="Trade-in Value:"

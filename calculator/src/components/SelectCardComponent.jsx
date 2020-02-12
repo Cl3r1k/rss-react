@@ -2,24 +2,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// TODO: Consider to change `Component` to `PureComponent`
-export default class SelectCardComponent extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      // selectedValue: 0,
-    };
-  }
-
+export default class SelectCardComponent extends React.PureComponent {
   generateOptions({ initialValue, endValue, step, predefinedValues }) {
     const optionsList = [];
 
     if (predefinedValues && predefinedValues.length) {
-      predefinedValues.forEach(item => optionsList.push(<option key={item}>{item}</option>));
+      predefinedValues.forEach(item => optionsList.push(<option key={`option-${item}`}>{item}</option>));
     } else {
       for (let i = initialValue; i <= endValue; i += step) {
-        optionsList.push(<option key={i}>{i}</option>);
+        optionsList.push(<option key={`option-${i}`}>{i}</option>);
       }
     }
 
@@ -29,9 +20,17 @@ export default class SelectCardComponent extends React.Component {
   render() {
     const { rangeLabel, rangeName, value, initialValue, endValue, step, predefinedValues, onChange } = this.props;
     return (
-      <div>
-        <label htmlFor={rangeName}>{rangeLabel}</label>
-        <select name={rangeName} onChange={evt => onChange(evt, rangeName)} value={value}>
+      <div className="select-card-container">
+        <label className="card-label" htmlFor={rangeName}>
+          {rangeLabel}
+        </label>
+        <select
+          className="card-select"
+          name={rangeName}
+          id={rangeName}
+          onChange={evt => onChange(evt, rangeName)}
+          value={value}
+        >
           {this.generateOptions({ initialValue, endValue, step, predefinedValues })}
         </select>
       </div>

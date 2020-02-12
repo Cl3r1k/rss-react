@@ -6,65 +6,46 @@ import PropTypes from 'prop-types';
 import ButtonComponent from './ButtonComponent';
 import MaskedInputCardComponent from './MaskedInputCardComponent';
 
-// TODO: Consider to change `Component` to `PureComponent`
-export default class LoanComponent extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
+export default class LoanComponent extends React.PureComponent {
   generateButtonsRows({ initialValue, endValue, step, predefinedValues, buttonName, onClick, selectedItem }) {
     const buttonsRow = [];
-    // console.log(
-    //   `initialValue: ${initialValue}, endValue: ${endValue}, step: ${step}, predefinedValues: ${predefinedValues}, buttonName: ${buttonName}`
-    // );
-
-    // buttonsRow.push(<ButtonComponent buttonName={buttonName} value={111} onClick={onClick} />);
-    // buttonsRow.push(<ButtonComponent buttonName={buttonName} value={222} onClick={onClick} />);
 
     if (predefinedValues && predefinedValues.length) {
-      // console.log('generateButtonsRows() predefinedValues');
-
       predefinedValues.forEach(item =>
         buttonsRow.push(
           <ButtonComponent
             isSelected={selectedItem === item}
             buttonName={buttonName}
             value={item}
-            key={item}
+            key={`button-${item}`}
             onClick={onClick}
           />
         )
       );
     } else {
-      // console.log('generateButtonsRows() initialValue, endValue, step');
       for (let i = initialValue; i <= endValue; i += step) {
         buttonsRow.push(
           <ButtonComponent
             isSelected={selectedItem === i}
             buttonName={buttonName}
             value={i}
-            key={i}
+            key={`button-${i}`}
             onClick={onClick}
           />
         );
       }
     }
 
-    // return <ButtonComponent buttonName={buttonName} value={1121} onClick={onClick} />;
-
-    return <div>{buttonsRow}</div>;
+    return buttonsRow;
   }
 
   render() {
     const { loanApr, loanTerm, loanCreditScore, onClick } = this.props;
     const [initialValue, endValue, step] = [600, 900, 50];
     const predefinedValues = [12, 24, 36, 48, 72, 84];
-    // console.log(`loanTerm: ${loanTerm}, loanCreditScore: ${loanCreditScore}`);
 
     return (
-      <div>
+      <div className="loan-container">
         <MaskedInputCardComponent
           inputLabel="APR:"
           value={loanApr}
@@ -72,17 +53,21 @@ export default class LoanComponent extends React.Component {
           valueLimit={100}
           onChange={onClick}
         />
-        <p>Terms:</p>
-        {this.generateButtonsRows({ predefinedValues, buttonName: 'loanTerm', selectedItem: loanTerm, onClick })}
-        <p>Credit Score:</p>
-        {this.generateButtonsRows({
-          initialValue,
-          endValue,
-          step,
-          buttonName: 'loanCreditScore',
-          selectedItem: loanCreditScore,
-          onClick,
-        })}
+        <p className="loan-text">Terms:</p>
+        <div className="buttons-row-container">
+          {this.generateButtonsRows({ predefinedValues, buttonName: 'loanTerm', selectedItem: loanTerm, onClick })}
+        </div>
+        <p className="loan-text">Credit Score:</p>
+        <div className="buttons-row-container">
+          {this.generateButtonsRows({
+            initialValue,
+            endValue,
+            step,
+            buttonName: 'loanCreditScore',
+            selectedItem: loanCreditScore,
+            onClick,
+          })}
+        </div>
       </div>
     );
   }

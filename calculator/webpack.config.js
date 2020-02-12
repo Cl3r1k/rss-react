@@ -91,7 +91,7 @@ const config = {
     }),
     // env && env.analyze ? new BundleAnalyzerPlugin() : new NothingPlugin()
     new CopyWebpackPlugin([
-      // { from: 'source', to: 'dest' },
+      { from: 'assets', to: 'assets' },
       // { from: 'other', to: 'public' },
     ]),
   ],

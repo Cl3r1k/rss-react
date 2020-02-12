@@ -37,7 +37,7 @@ Todo:
 
   Required functionality:
     Calculator:
-      ☐ When a user opens the page the default calculator values should be set (values from session storage have higher priority than values described above)(post code, credit score, term, mileage, apr, trade-in, down payment )
+      ✔ When a user opens the page the default calculator values should be set (values from session storage have higher priority than values described above)(post code, credit score, term, mileage, apr, trade-in, down payment ) @done(20-02-12 18:42)
       ✔ Create a .js file with mock data for the info card, and get this data asynchronously in your react component. (required fields: msrp, vehicle name, dealer name, dealer phone, dealer rating) (You can use Promise.resolve(mockData) to make it async). @done(20-02-12 11:49)
       ✔ Validate Down Payment and Trade-In values. (Show messages to indicate that limit has been exceeded). @done(20-02-12 16:31)
       ✔ Run calculations after any input value change (only in case if entered values are valid, otherwise show validation error) @done(20-02-12 18:02)
@@ -58,8 +58,8 @@ Todo:
       ✔ If credit score >= 640 and < 700, then creditScoreValue = 1.05 @done(20-02-12 18:03)
       ✔ If credit score < 640 , then creditScoreValue = 1.2 @done(20-02-12 18:03)
   
-  ☐ User session  
-    ☐ Current session should be saved and be accessible when user opens up the page again
+  ✔ User session @done(20-02-12 18:42)
+    ✔ Current session should be saved and be accessible when user opens up the page again @done(20-02-12 18:42)
 
   Technical requirements:
     ✔ Browser support: latest version of Google Chrome. @done(20-02-11 19:17)
@@ -67,8 +67,8 @@ Todo:
     ✔ Don’t use create-react-app @done(20-02-11 19:17)
     ✔ You can use css preprocessors, bootstrap, material design, lodash.js etc. @done(20-02-11 19:17)
     ✔ Use your own private repository to store and manage code @done(20-02-11 19:18)
-    ☐ Final version of the calculator should be available via a link. The easiest way to do so is to host your project on GitHub pages / Google Firebase / Heroku / Netlify / any other hosting.
-    ☐ Re-use components and functionality as much as possible (using hoc, render and children prop is welcome)
+    ✔ Final version of the calculator should be available via a link. The easiest way to do so is to host your project on GitHub pages / Google Firebase / Heroku / Netlify / any other hosting. @done(20-02-12 18:42)
+    ✔ Re-use components and functionality as much as possible (using hoc, render and children prop is welcome) @done(20-02-12 18:42)
 
 
   Score criteria:
@@ -88,13 +88,13 @@ Todo:
       ✔ Data shares between loan and lease calculator (+20) @done(20-02-12 18:03)
       ✔ Data loads and calculations does asynchronously (result of the function that loads data about dealer and car is Promise. result of the function that calculates taxes and monthly payment is Promise) (+10) @done(20-02-12 18:04)
       ☐ Hoc, children or render pop is used (+20)
-      ☐ Validation for Down Payment and Trade-In (validation message is shown, new calculation haven't run: monthly payment remains the same) (+40)
+      ✔ Validation for Down Payment and Trade-In (validation message is shown, new calculation haven't run: monthly payment remains the same) (+40) @done(20-02-12 18:42)
       ☐ Inputs display their values with currency sign (if applicable. Ex.: trade-In, Down Payment) (+20)
     
     Extra (additional) scope:
     Max - **+40**
-      ☐ Keyboard support (+20)
-      ☐ Session storage (data saves to storage and restores after page reload). (+20)
+      ✔ Keyboard support (+20) @done(20-02-12 18:42)
+      ✔ Session storage (data saves to storage and restores after page reload). (+20) @done(20-02-12 18:42)
 
 
     Fines:
