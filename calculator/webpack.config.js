@@ -3,7 +3,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 function NothingPlugin() {
   this.apply = function() {};
@@ -90,10 +90,10 @@ const config = {
       // filename: './index.html',
     }),
     // env && env.analyze ? new BundleAnalyzerPlugin() : new NothingPlugin()
-    // new CopyWebpackPlugin([
-    //   // { from: 'source', to: 'dest' },
-    //   // { from: 'other', to: 'public' },
-    // ]),
+    new CopyWebpackPlugin([
+      // { from: 'source', to: 'dest' },
+      // { from: 'other', to: 'public' },
+    ]),
   ],
 
   devServer: {

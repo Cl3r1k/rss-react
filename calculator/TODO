@@ -11,62 +11,62 @@ Todo:
   App Structure:
 
   Calculator:
-    ☐ Two tabs (Loan and Lease)
-      ☐ Tab 1 (Loan)
-        ☐ Input for Down Payment (value can’t be greater than `¼` of MSRP, **default**: 0)
-        ☐ Input for Trade-In (value can’t be greater than `¼` of MSRP, **default**: 0)
-        ☐ Input for APR (in %, **default**: 0)
-        ☐ Input for Post Code (**default**: your current post code)
-        ☐ **Buttons** row for Terms (available values: [12, 24, 36, 48, 72, 84], **default**: 24)  <========================================================= CURRENT TASK
-        ☐ **Buttons** row for Credit Score (values from 600 to 900 with step 50, **default**: 750)
-      ☐ Tab 2 (Lease)
-        ☐ Input for Down Payment (value can’t be greater than `¼` of MSRP, **default**: 0)
-        ☐ Input for Trade-In (value can’t be greater than `¼` of MSRP, **default**: 0)
-        ☐ Input for Post Code (**default**: your current post code)
+    ✔ Two tabs (Loan and Lease) @done(20-02-12 16:31)
+      ✔ Tab 1 (Loan) @done(20-02-12 16:31)
+        ✔ Input for Down Payment (value can’t be greater than `¼` of MSRP, **default**: 0) @done(20-02-12 16:31)
+        ✔ Input for Trade-In (value can’t be greater than `¼` of MSRP, **default**: 0) @done(20-02-12 16:31)
+        ✔ Input for APR (in %, **default**: 0) @done(20-02-12 12:07)
+        ✔ Input for Post Code (**default**: your current post code) @done(20-02-12 12:35)
+        ✔ **Buttons** row for Terms (available values: [12, 24, 36, 48, 72, 84], **default**: 24) @done(20-02-11 18:37)
+        ✔ **Buttons** row for Credit Score (values from 600 to 900 with step 50, **default**: 750) @done(20-02-11 18:37)
+      ✔ Tab 2 (Lease) @done(20-02-12 16:31)
+        ✔ Input for Down Payment (value can’t be greater than `¼` of MSRP, **default**: 0) @done(20-02-12 16:31)
+        ✔ Input for Trade-In (value can’t be greater than `¼` of MSRP, **default**: 0) @done(20-02-12 16:31)
+        ✔ Input for Post Code (**default**: your current post code) @done(20-02-12 16:31)
         ✔ **Select** input for Terms (available values: [24, 36, 48], **default**: 36) @done(20-02-11 15:38)
         ✔ **Select** input for Mileages (available values: [10000, 12000, 15000], **default**: 12000) @done(20-02-11 15:38)
         ✔ **Select** input for Credit Score (values from 600 to 900 with step 50, **default**: 750) @done(20-02-11 15:38)
-      ☐ Info card
-        ☐ MSRP
-        ☐ Vehicle name
-        ☐ Monthly payment
-        ☐ Taxes (array of numbers, generates during calculations)
-        ☐ Dealer name
-        ☐ Dealer phone number
-        ☐ Dealer rating
+      ✔ Info card @done(20-02-11 19:08)
+        ✔ MSRP @done(20-02-11 19:08)
+        ✔ Vehicle name @done(20-02-11 19:08)
+        ✔ Monthly payment @done(20-02-12 11:40)
+        ✔ Taxes (array of numbers, generates during calculations) @done(20-02-11 19:08)
+        ✔ Dealer name @done(20-02-11 19:08)
+        ✔ Dealer phone number @done(20-02-11 19:08)
+        ✔ Dealer rating @done(20-02-11 19:08)
 
   Required functionality:
-    ☐ Calculator
-    ☐ When a user opens the page the default calculator values should be set (values from session storage have higher priority than values described above)(post code, credit score, term, mileage, apr, trade-in, down payment )
-    ☐ Create a .js file with mock data for the info card, and get this data asynchronously in your react component. (required fields: msrp, vehicle name, dealer name, dealer phone, dealer rating) (You can use Promise.resolve(mockData) to make it async).
-    ☐ Validate Down Payment and Trade-In values. (Show messages to indicate that limit has been exceeded).
-    ☐ Run calculations after any input value change (only in case if entered values are valid, otherwise show validation error)
-    ☐ While data is loading, show spinner icon
-    ☐ Share Trade-In, Down Payment and Credit Score values between loan and lease calculator (if a user entered trade-in value on loan tab, and then switched an active tab to lease, he should see entered trade-in for loan and vice versa).
-    ☐ The calculator also should be accessible using keyboard
+    Calculator:
+      ☐ When a user opens the page the default calculator values should be set (values from session storage have higher priority than values described above)(post code, credit score, term, mileage, apr, trade-in, down payment )
+      ✔ Create a .js file with mock data for the info card, and get this data asynchronously in your react component. (required fields: msrp, vehicle name, dealer name, dealer phone, dealer rating) (You can use Promise.resolve(mockData) to make it async). @done(20-02-12 11:49)
+      ✔ Validate Down Payment and Trade-In values. (Show messages to indicate that limit has been exceeded). @done(20-02-12 16:31)
+      ✔ Run calculations after any input value change (only in case if entered values are valid, otherwise show validation error) @done(20-02-12 18:02)
+      ☐ While data is loading, show spinner icon
+      ✔ Share Trade-In, Down Payment and Credit Score values between loan and lease calculator (if a user entered trade-in value on loan tab, and then switched an active tab to lease, he should see entered trade-in for loan and vice versa). @done(20-02-12 18:03)
+      ✔ The calculator also should be accessible using keyboard @done(20-02-12 18:03)
 
   How to calculate:
   
-    ☐ When msrp and all the data from calculator inputs are available do the calculation using(**a call of calculation function should be always wrapped in Promise!!!**):
-      ☐ monthly payment lease: ```(msrp - tradeIn - downPayment) * mileage / 10000 / term * creditScoreValue```
-      ☐ monthly payment loan: ```(msrp - tradeIn - downPayment) * / term * creditScoreValue * apr```
-      ☐ taxes: ```postCode.split(‘’).map(num => num * 11)```
+    ✔ When msrp and all the data from calculator inputs are available do the calculation using(**a call of calculation function should be always wrapped in Promise!!!**): @done(20-02-12 18:03)
+      ✔ monthly payment lease: ```(msrp - tradeIn - downPayment) * mileage / 10000 / term * creditScoreValue``` @done(20-02-12 18:03)
+      ✔ monthly payment loan: ```(msrp - tradeIn - downPayment) * / term * creditScoreValue * apr``` @done(20-02-12 18:03)
+      ✔ taxes: ```postCode.split(‘’).map(num => num * 11)``` @done(20-02-12 16:36)
     
     creditScoreValue defines by the following rules:
-      ☐ If credit score >= 750, then creditScoreValue = 0.95
-      ☐ If credit score >= 700 and < 750, then creditScoreValue = 1
-      ☐ If credit score >= 640 and < 700, then creditScoreValue = 1.05
-      ☐ If credit score < 640 , then creditScoreValue = 1.2
+      ✔ If credit score >= 750, then creditScoreValue = 0.95 @done(20-02-12 18:03)
+      ✔ If credit score >= 700 and < 750, then creditScoreValue = 1 @done(20-02-12 18:03)
+      ✔ If credit score >= 640 and < 700, then creditScoreValue = 1.05 @done(20-02-12 18:03)
+      ✔ If credit score < 640 , then creditScoreValue = 1.2 @done(20-02-12 18:03)
   
   ☐ User session  
     ☐ Current session should be saved and be accessible when user opens up the page again
 
   Technical requirements:
-    ☐ Browser support: latest version of Google Chrome.
-    ☐ Usage of React or React + TypeScript.
-    ☐ Don’t use create-react-app 
-    ☐ You can use css preprocessors, bootstrap, material design, lodash.js etc.
-    ☐ Use your own private repository to store and manage code
+    ✔ Browser support: latest version of Google Chrome. @done(20-02-11 19:17)
+    ✔ Usage of React or React + TypeScript. @done(20-02-11 19:17)
+    ✔ Don’t use create-react-app @done(20-02-11 19:17)
+    ✔ You can use css preprocessors, bootstrap, material design, lodash.js etc. @done(20-02-11 19:17)
+    ✔ Use your own private repository to store and manage code @done(20-02-11 19:18)
     ☐ Final version of the calculator should be available via a link. The easiest way to do so is to host your project on GitHub pages / Google Firebase / Heroku / Netlify / any other hosting.
     ☐ Re-use components and functionality as much as possible (using hoc, render and children prop is welcome)
 
@@ -77,16 +77,16 @@ Todo:
     
     Basic scope:
     Max - **+70**
-      ☐ Loan calculator (+20)
-      ☐ Lease calculator (+20)
-      ☐ Info card (+10)
-      ☐ Calculation logic (monthly payment and taxes are updated properly) (+20)
+      ✔ Loan calculator (+20) @done(20-02-11 19:18)
+      ✔ Lease calculator (+20) @done(20-02-11 19:18)
+      ✔ Info card (+10) @done(20-02-12 11:49)
+      ✔ Calculation logic (monthly payment and taxes are updated properly) (+20) @done(20-02-12 18:05)
     
     Normal scope:
     Max - **+120**
-      ☐ Spinner (+10)
-      ☐ Data shares between loan and lease calculator (+20)
-      ☐ Data loads and calculations does asynchronously (result of the function that loads data about dealer and car is Promise. result of the function that calculates taxes and monthly payment is Promise) (+10)
+      ☐ Spinner (+10)  <========================================================= CURRENT TASK
+      ✔ Data shares between loan and lease calculator (+20) @done(20-02-12 18:03)
+      ✔ Data loads and calculations does asynchronously (result of the function that loads data about dealer and car is Promise. result of the function that calculates taxes and monthly payment is Promise) (+10) @done(20-02-12 18:04)
       ☐ Hoc, children or render pop is used (+20)
       ☐ Validation for Down Payment and Trade-In (validation message is shown, new calculation haven't run: monthly payment remains the same) (+40)
       ☐ Inputs display their values with currency sign (if applicable. Ex.: trade-In, Down Payment) (+20)

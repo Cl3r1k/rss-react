@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 // Components
 import ButtonComponent from './ButtonComponent';
+import MaskedInputCardComponent from './MaskedInputCardComponent';
 
 // TODO: Consider to change `Component` to `PureComponent`
 export default class LoanComponent extends React.Component {
@@ -57,13 +58,20 @@ export default class LoanComponent extends React.Component {
   }
 
   render() {
-    const { loanTerm, loanCreditScore, onClick } = this.props;
+    const { loanApr, loanTerm, loanCreditScore, onClick } = this.props;
     const [initialValue, endValue, step] = [600, 900, 50];
     const predefinedValues = [12, 24, 36, 48, 72, 84];
     // console.log(`loanTerm: ${loanTerm}, loanCreditScore: ${loanCreditScore}`);
 
     return (
       <div>
+        <MaskedInputCardComponent
+          inputLabel="APR:"
+          value={loanApr}
+          inputName="loanApr"
+          valueLimit={100}
+          onChange={onClick}
+        />
         <p>Terms:</p>
         {this.generateButtonsRows({ predefinedValues, buttonName: 'loanTerm', selectedItem: loanTerm, onClick })}
         <p>Credit Score:</p>
@@ -81,12 +89,14 @@ export default class LoanComponent extends React.Component {
 }
 
 LoanComponent.propTypes = {
+  loanApr: PropTypes.number,
   loanTerm: PropTypes.number,
   loanCreditScore: PropTypes.number,
   onClick: PropTypes.func.isRequired,
 };
 
 LoanComponent.defaultProps = {
+  loanApr: 0,
   loanTerm: 24,
   loanCreditScore: 750,
 };
