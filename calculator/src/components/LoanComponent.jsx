@@ -6,6 +6,10 @@ import PropTypes from 'prop-types';
 import ButtonComponent from './ButtonComponent';
 import MaskedInputCardComponent from './MaskedInputCardComponent';
 
+// Constants
+const LOAN_TERMS = [12, 24, 36, 48, 72, 84];
+const LOAN_CREDIT_SCORES = [[600, 900, 50]];
+
 export default class LoanComponent extends React.PureComponent {
   generateButtonsRows({ initialValue, endValue, step, predefinedValues, buttonName, onClick, selectedItem }) {
     const buttonsRow = [];
@@ -41,8 +45,7 @@ export default class LoanComponent extends React.PureComponent {
 
   render() {
     const { loanApr, loanTerm, loanCreditScore, onClick } = this.props;
-    const [initialValue, endValue, step] = [600, 900, 50];
-    const predefinedValues = [12, 24, 36, 48, 72, 84];
+    const [initialValue, endValue, step] = LOAN_CREDIT_SCORES;
 
     return (
       <div className="loan-container">
@@ -55,7 +58,7 @@ export default class LoanComponent extends React.PureComponent {
         />
         <p className="loan-text">Terms:</p>
         <div className="buttons-row-container">
-          {this.generateButtonsRows({ predefinedValues, buttonName: 'loanTerm', selectedItem: loanTerm, onClick })}
+          {this.generateButtonsRows({ LOAN_TERMS, buttonName: 'loanTerm', selectedItem: loanTerm, onClick })}
         </div>
         <p className="loan-text">Credit Score:</p>
         <div className="buttons-row-container">

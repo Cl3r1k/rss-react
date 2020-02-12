@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 // Components
 import SelectCardComponent from './SelectCardComponent';
 
+// Constants
+const MILEAGES = [10000, 12000, 15000];
+
 export default class LeaseComponent extends React.PureComponent {
   render() {
     const { terms, mileages, creditScore, onChange } = this.props;
@@ -23,7 +26,7 @@ export default class LeaseComponent extends React.PureComponent {
           rangeLabel="Mileages:"
           rangeName="mileages"
           value={mileages}
-          predefinedValues={[10000, 12000, 15000]}
+          predefinedValues={MILEAGES}
           onChange={onChange}
         />
         <SelectCardComponent
