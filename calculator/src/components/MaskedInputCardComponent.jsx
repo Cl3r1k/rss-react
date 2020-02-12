@@ -44,7 +44,7 @@ export default class MaskedInputCardComponent extends React.Component {
   }
 
   render() {
-    const { inputLabel, inputName, value } = this.props;
+    const { inputLabel, inputName, prefix, value } = this.props;
     const { warningMessage } = this.state;
 
     return (
@@ -53,6 +53,7 @@ export default class MaskedInputCardComponent extends React.Component {
           {inputLabel}
         </label>
         {warningMessage && <span className="card-warning-info">{warningMessage}</span>}
+        {prefix && <i className="material-icons prefix">attach_money</i>}
         <input
           className="card-input"
           placeholder="Enter value"
@@ -73,6 +74,7 @@ MaskedInputCardComponent.propTypes = {
   value: PropTypes.number,
   inputName: PropTypes.string,
   valueLimit: PropTypes.number,
+  prefix: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
 };
 
@@ -80,5 +82,6 @@ MaskedInputCardComponent.defaultProps = {
   inputLabel: 'Masked input label',
   value: 0,
   valueLimit: -1,
+  prefix: false,
   inputName: 'inputName',
 };

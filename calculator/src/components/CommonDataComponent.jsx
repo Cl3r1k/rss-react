@@ -16,6 +16,7 @@ export default class CommonDataComponent extends React.PureComponent {
           value={tradeIn}
           inputName="tradeIn"
           valueLimit={valueLimit}
+          prefix
           onChange={onChange}
         />
         <MaskedInputCardComponent
@@ -23,6 +24,7 @@ export default class CommonDataComponent extends React.PureComponent {
           value={downPayment}
           inputName="downPayment"
           valueLimit={valueLimit}
+          prefix
           onChange={onChange}
         />
       </div>

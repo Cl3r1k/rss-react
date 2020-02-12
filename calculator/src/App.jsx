@@ -4,6 +4,7 @@ import React from 'react';
 // Modules
 import mockData from './modules/mockData';
 import geoData from './modules/geoData';
+import 'materialize-css';
 
 // Components
 import TabComponent from './components/TabComponent';
@@ -12,6 +13,7 @@ import LeaseComponent from './components/LeaseComponent';
 import PaymentComponent from './components/PaymentComponent';
 import LoanComponent from './components/LoanComponent';
 import InfoTabComponent from './components/InfoTabComponent';
+import LoaderComponent from './components/LoaderComponent';
 
 const APP_SAVE_NAME = 'ReactCalculator';
 
@@ -37,15 +39,18 @@ class App extends React.Component {
       dealerPhone: 'dealerPhone',
       dealerRating: 'dealerRating',
       valueLimit: -1,
+      isLoading: true,
     };
   }
 
   async componentDidMount() {
     const savedState = this.loadAppSettings();
 
+    await this.delayAsync(1000);
+
     if (savedState) {
       const parsedState = JSON.parse(savedState);
-      this.setState({ ...parsedState });
+      this.setState({ ...parsedState, isLoading: false });
     } else {
       await this.loadDefaults();
     }
@@ -68,6 +73,8 @@ class App extends React.Component {
     this.setState({ isLoanTab: idName === 'Loan' }, this.calculatePayment);
   };
 
+  delayAsync = async ms => new Promise(resolve => setTimeout(() => resolve(), ms));
+
   async loadDefaults() {
     const VALUE_LIMIT_RATE = 0.25;
     const responseDataValues = await Promise.resolve(mockData);
@@ -75,7 +82,7 @@ class App extends React.Component {
 
     const responseDataZip = await geoData.getGeoDataAsync();
 
-    this.setState({ ...responseDataValues, ...responseDataZip, valueLimit });
+    this.setState({ ...responseDataValues, ...responseDataZip, valueLimit, isLoading: false });
   }
 
   async calculatePayment() {
@@ -122,14 +129,7 @@ class App extends React.Component {
     this.setState({ monthlyPayment });
   }
 
-  // initApp() {
-  //   // await this.getInitialData();
-  //   // console.log('initApp() called');
-  // }
-
   render() {
-    // this.initApp();
-
     const {
       isLoanTab,
       zipCode,
@@ -148,7 +148,16 @@ class App extends React.Component {
       dealerRating,
       valueLimit,
       monthlyPayment,
+      isLoading,
     } = this.state;
+
+    if (isLoading) {
+      return (
+        <div className="pre-loader">
+          <LoaderComponent />
+        </div>
+      );
+    }
 
     return (
       <div className="wrapper">

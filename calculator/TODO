@@ -41,7 +41,7 @@ Todo:
       ✔ Create a .js file with mock data for the info card, and get this data asynchronously in your react component. (required fields: msrp, vehicle name, dealer name, dealer phone, dealer rating) (You can use Promise.resolve(mockData) to make it async). @done(20-02-12 11:49)
       ✔ Validate Down Payment and Trade-In values. (Show messages to indicate that limit has been exceeded). @done(20-02-12 16:31)
       ✔ Run calculations after any input value change (only in case if entered values are valid, otherwise show validation error) @done(20-02-12 18:02)
-      ☐ While data is loading, show spinner icon
+      ✔ While data is loading, show spinner icon @done(20-02-12 19:55)
       ✔ Share Trade-In, Down Payment and Credit Score values between loan and lease calculator (if a user entered trade-in value on loan tab, and then switched an active tab to lease, he should see entered trade-in for loan and vice versa). @done(20-02-12 18:03)
       ✔ The calculator also should be accessible using keyboard @done(20-02-12 18:03)
 
@@ -84,12 +84,12 @@ Todo:
     
     Normal scope:
     Max - **+120**
-      ☐ Spinner (+10)  <========================================================= CURRENT TASK
+      ✔ Spinner (+10) @done(20-02-12 19:55)
       ✔ Data shares between loan and lease calculator (+20) @done(20-02-12 18:03)
       ✔ Data loads and calculations does asynchronously (result of the function that loads data about dealer and car is Promise. result of the function that calculates taxes and monthly payment is Promise) (+10) @done(20-02-12 18:04)
-      ☐ Hoc, children or render pop is used (+20)
+      ☐ Hoc, children or render pop is used (+20)  <========================================================= CURRENT TASK
       ✔ Validation for Down Payment and Trade-In (validation message is shown, new calculation haven't run: monthly payment remains the same) (+40) @done(20-02-12 18:42)
-      ☐ Inputs display their values with currency sign (if applicable. Ex.: trade-In, Down Payment) (+20)
+      ✔ Inputs display their values with currency sign (if applicable. Ex.: trade-In, Down Payment) (+20) @done(20-02-12 19:55)
     
     Extra (additional) scope:
     Max - **+40**
