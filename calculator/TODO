@@ -1,0 +1,130 @@
+@Task - *Calculator* `https://github.com/rolling-scopes-school/tasks/blob/master/tasks/calculator.md`
+@Questions - `https://docs.google.com/document/d/1QWoHxUGsVvgAAQeow4FkyZEUCeGgwrkF7omvFsdbZfY/edit#heading=h.2m5bb02nu7kq`
+@Repo - `https://github.com/Cl3r1k/rss-react/tree/calculator/calculator`
+@UI_Prototype - `https://drive.google.com/open?id=1AU1dGkvhGgLiwhC6dLxR5hozOr_DotRf`
+@Prototype - ``
+@Example - `https://perfect-calculator.netlify.com/`
+@Demo - `https://cl3r1k-calculator-react.netlify.com/`
+
+Todo:
+
+  App Structure:
+
+  Calculator:
+    ✔ Two tabs (Loan and Lease) @done(20-02-12 16:31)
+      ✔ Tab 1 (Loan) @done(20-02-12 16:31)
+        ✔ Input for Down Payment (value can’t be greater than `¼` of MSRP, **default**: 0) @done(20-02-12 16:31)
+        ✔ Input for Trade-In (value can’t be greater than `¼` of MSRP, **default**: 0) @done(20-02-12 16:31)
+        ✔ Input for APR (in %, **default**: 0) @done(20-02-12 12:07)
+        ✔ Input for Post Code (**default**: your current post code) @done(20-02-12 12:35)
+        ✔ **Buttons** row for Terms (available values: [12, 24, 36, 48, 72, 84], **default**: 24) @done(20-02-11 18:37)
+        ✔ **Buttons** row for Credit Score (values from 600 to 900 with step 50, **default**: 750) @done(20-02-11 18:37)
+      ✔ Tab 2 (Lease) @done(20-02-12 16:31)
+        ✔ Input for Down Payment (value can’t be greater than `¼` of MSRP, **default**: 0) @done(20-02-12 16:31)
+        ✔ Input for Trade-In (value can’t be greater than `¼` of MSRP, **default**: 0) @done(20-02-12 16:31)
+        ✔ Input for Post Code (**default**: your current post code) @done(20-02-12 16:31)
+        ✔ **Select** input for Terms (available values: [24, 36, 48], **default**: 36) @done(20-02-11 15:38)
+        ✔ **Select** input for Mileages (available values: [10000, 12000, 15000], **default**: 12000) @done(20-02-11 15:38)
+        ✔ **Select** input for Credit Score (values from 600 to 900 with step 50, **default**: 750) @done(20-02-11 15:38)
+      ✔ Info card @done(20-02-11 19:08)
+        ✔ MSRP @done(20-02-11 19:08)
+        ✔ Vehicle name @done(20-02-11 19:08)
+        ✔ Monthly payment @done(20-02-12 11:40)
+        ✔ Taxes (array of numbers, generates during calculations) @done(20-02-11 19:08)
+        ✔ Dealer name @done(20-02-11 19:08)
+        ✔ Dealer phone number @done(20-02-11 19:08)
+        ✔ Dealer rating @done(20-02-11 19:08)
+
+  Required functionality:
+    Calculator:
+      ✔ When a user opens the page the default calculator values should be set (values from session storage have higher priority than values described above)(post code, credit score, term, mileage, apr, trade-in, down payment ) @done(20-02-12 18:42)
+      ✔ Create a .js file with mock data for the info card, and get this data asynchronously in your react component. (required fields: msrp, vehicle name, dealer name, dealer phone, dealer rating) (You can use Promise.resolve(mockData) to make it async). @done(20-02-12 11:49)
+      ✔ Validate Down Payment and Trade-In values. (Show messages to indicate that limit has been exceeded). @done(20-02-12 16:31)
+      ✔ Run calculations after any input value change (only in case if entered values are valid, otherwise show validation error) @done(20-02-12 18:02)
+      ✔ While data is loading, show spinner icon @done(20-02-12 19:55)
+      ✔ Share Trade-In, Down Payment and Credit Score values between loan and lease calculator (if a user entered trade-in value on loan tab, and then switched an active tab to lease, he should see entered trade-in for loan and vice versa). @done(20-02-12 18:03)
+      ✔ The calculator also should be accessible using keyboard @done(20-02-12 18:03)
+
+  How to calculate:
+  
+    ✔ When msrp and all the data from calculator inputs are available do the calculation using(**a call of calculation function should be always wrapped in Promise!!!**): @done(20-02-12 18:03)
+      ✔ monthly payment lease: ```(msrp - tradeIn - downPayment) * mileage / 10000 / term * creditScoreValue``` @done(20-02-12 18:03)
+      ✔ monthly payment loan: ```(msrp - tradeIn - downPayment) * / term * creditScoreValue * apr``` @done(20-02-12 18:03)
+      ✔ taxes: ```postCode.split(‘’).map(num => num * 11)``` @done(20-02-12 16:36)
+    
+    creditScoreValue defines by the following rules:
+      ✔ If credit score >= 750, then creditScoreValue = 0.95 @done(20-02-12 18:03)
+      ✔ If credit score >= 700 and < 750, then creditScoreValue = 1 @done(20-02-12 18:03)
+      ✔ If credit score >= 640 and < 700, then creditScoreValue = 1.05 @done(20-02-12 18:03)
+      ✔ If credit score < 640 , then creditScoreValue = 1.2 @done(20-02-12 18:03)
+  
+  ✔ User session @done(20-02-12 18:42)
+    ✔ Current session should be saved and be accessible when user opens up the page again @done(20-02-12 18:42)
+
+  Technical requirements:
+    ✔ Browser support: latest version of Google Chrome. @done(20-02-11 19:17)
+    ✔ Usage of React or React + TypeScript. @done(20-02-11 19:17)
+    ✔ Don’t use create-react-app @done(20-02-11 19:17)
+    ✔ You can use css preprocessors, bootstrap, material design, lodash.js etc. @done(20-02-11 19:17)
+    ✔ Use your own private repository to store and manage code @done(20-02-11 19:18)
+    ✔ Final version of the calculator should be available via a link. The easiest way to do so is to host your project on GitHub pages / Google Firebase / Heroku / Netlify / any other hosting. @done(20-02-12 18:42)
+    ✔ Re-use components and functionality as much as possible (using hoc, render and children prop is welcome) @done(20-02-12 18:42)
+
+
+  Score criteria:
+
+    Basic (70) + Normal (120) + Extra (40) - +230:
+    
+    Basic scope:
+    Max - **+70**
+      ✔ Loan calculator (+20) @done(20-02-11 19:18)
+      ✔ Lease calculator (+20) @done(20-02-11 19:18)
+      ✔ Info card (+10) @done(20-02-12 11:49)
+      ✔ Calculation logic (monthly payment and taxes are updated properly) (+20) @done(20-02-12 18:05)
+    
+    Normal scope:
+    Max - **+120**
+      ✔ Spinner (+10) @done(20-02-12 19:55)
+      ✔ Data shares between loan and lease calculator (+20) @done(20-02-12 18:03)
+      ✔ Data loads and calculations does asynchronously (result of the function that loads data about dealer and car is Promise. result of the function that calculates taxes and monthly payment is Promise) (+10) @done(20-02-12 18:04)
+      ☐ Hoc, children or render pop is used (+20)  <========================================================= CURRENT TASK
+      ✔ Validation for Down Payment and Trade-In (validation message is shown, new calculation haven't run: monthly payment remains the same) (+40) @done(20-02-12 18:42)
+      ✔ Inputs display their values with currency sign (if applicable. Ex.: trade-In, Down Payment) (+20) @done(20-02-12 19:55)
+    
+    Extra (additional) scope:
+    Max - **+40**
+      ✔ Keyboard support (+20) @done(20-02-12 18:42)
+      ✔ Session storage (data saves to storage and restores after page reload). (+20) @done(20-02-12 18:42)
+
+
+    Fines:
+      - -50 and more - General stage 2 requirements violation or inappropriate quality of the code (depending on the decision of the checking)
+      - -10 there are errors in web console
+      - -50 there are errors preventing app from normal work
+      - -10 uses API key from description, not your own
+      - -20 lease and loan calculators look the same
+
+
+  Requirements to the quality of code, repository, project structure:
+    - https://github.com/rolling-scopes-school/docs/blob/master/docs/stage2.md
+    - Use one of the recommended ways to organize your code: https://reactjs.org/docs/faq-structure.html 
+    - https://medium.com/better-programming/clean-code-applied-to-javascript-part-1-9f3badd5715
+  
+
+  Useful links:
+    1) location API (https://ipinfo.io/)
+      - Sign up
+      - Get token
+      - Get location data (you need only postal) https://ipinfo.io/json?token=eb5b90bb77d46a
+     
+    2) React Best Practices
+      - https://www.codeinwp.com/blog/react-best-practices/
+      - http://www.jancarloviray.com/blog/react-best-practices-2020/
+
+    3) PropTypes
+      - https://ru.reactjs.org/docs/typechecking-with-proptypes.html#___gatsby
+     
+     
+  Help:
+  - In case of any questions leave them in the doc: https://docs.google.com/document/d/1QWoHxUGsVvgAAQeow4FkyZEUCeGgwrkF7omvFsdbZfY/edit#  
+  - MSRP - Manufacturers Suggested Retail Price
